@@ -16,5 +16,9 @@
   "bugs": {
     "url": "https://github.com/AngelMond/SocialNetwork-API/issues"
   },
-  "homepage": "https://github.com/AngelMond/SocialNetwork-API#readme"
+  "homepage": "https://github.com/AngelMond/SocialNetwork-API#readme",
+  "dependencies": {
+    "express": "^4.18.1",
+    "mongoose": "^6.4.4"
+  }
 }
