@@ -18,7 +18,7 @@ const User = new mongoose.Schema({
 
 //Thought Schema
 const Thought = new mongoose.Schema({
-    thoughtText: {type: String, required: true, },//Must be between 1 and 280 characters
+    thoughtText: {type: String, required: true, },//Must be between 1 and 280 characters buscar delimiter filter o meter regex
 
     createdAt: {type: Date, default: Date.now}, //Use a getter method to format the timestamp on query
     //The user that created this thought
