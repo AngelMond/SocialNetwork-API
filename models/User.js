@@ -1,6 +1,7 @@
-const { Schema, Types } = require('mongoose');
+const { Schema, Types, model } = require('mongoose');
+const thoughtSchema = require('./Thought');
 
-const thoughtSchema = require('./Thought')
+
 //User Schema
 const userSchema = new Schema({
 
@@ -19,12 +20,19 @@ const userSchema = new Schema({
             'Please enter a valid email address.',
         ]
     },
-    
-    thoughts: [thoughtSchema], //Hace referencia al modelo Thought
+    //Reference thoughtSchema
+    thoughts: [thoughtSchema], 
 
-    friends: [userSchema],//Hace referencia asi mismo
+    //Reference userSchema
+    friends: [userSchema],
     
-});
+    },
+    {
+    toJSON: {
+        getters: true,
+        },
+    }
+);
 
 //Create a virtual called `friendCount` that retrieves the length of the user's `friends` array field on query.
 userSchema.virtual('friendCount').get(function(){
@@ -32,6 +40,9 @@ userSchema.virtual('friendCount').get(function(){
 });
 
 
+const User = model('User', userSchema );
 
+
+module.exports = User;
 
 

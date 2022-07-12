@@ -24,7 +24,13 @@ const thoughtSchema = new Schema({
     reactions: [reactionSchema],
 
     //Create a virtual called `reactionCount` that retrieves the length of the thought's `reactions` array field on query.
-});
+    },
+    {
+    toJSON: {
+        getters: true,
+        },
+    }
+);
 
 //Use a getter method to format the timestamp on query
 thoughtSchema.virtual('reactionCount')
@@ -32,4 +38,9 @@ thoughtSchema.virtual('reactionCount')
     return this.reactions.length;
 });
 
-module.exports = thoughtSchema;
+const Thought = model('Thought', thoughtSchema)
+
+module.exports = {
+    Thought,
+    thoughtSchema
+};
