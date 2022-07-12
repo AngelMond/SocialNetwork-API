@@ -6,7 +6,7 @@ const User = new mongoose.Schema({
 
     username: {type: String, unique: true, required: true, trimmed: true},
 
-    email: {type: String, required: true, unique: true, },//falta añadir validacion, debe hacer match con un email valido:  (look into Mongoose's matching validation)
+    email: {type: String, required: true, unique: true, maxLength: 20},//falta añadir validacion, debe hacer match con un email valido:  (look into Mongoose's matching validation)
     
     thoughts: [Thought], //Debe de contener el esquema de Thought
 
@@ -18,9 +18,10 @@ const User = new mongoose.Schema({
 
 //Thought Schema
 const Thought = new mongoose.Schema({
-    thoughtText: {type: String, required: true, },//Must be between 1 and 280 characters buscar delimiter filter o meter regex
+    thoughtText: {type: String, required: true, maxLength: 20},//Must be between 1 and 280 characters buscar delimiter filter o meter regex
 
     createdAt: {type: Date, default: Date.now}, //Use a getter method to format the timestamp on query
+
     //The user that created this thought
     username: {type: String, required: true},
 
@@ -36,7 +37,7 @@ const Thought = new mongoose.Schema({
 const Reaction = new mongoose.Schema({
     reactionId: {},
 
-    reactionBody: {type:String, required: true, }, //Anadir 280 characters como maximo
+    reactionBody: {type:String, required: true, maxLength: 20 }, //Anadir 280 characters como maximo
 
     createdAt: {type: Date, default: Date.now}, //Use a getter method to format the timestamp on query
 });
