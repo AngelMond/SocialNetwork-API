@@ -61,6 +61,40 @@ let userController = {
         }catch(err){
             res.status(500).json({message: 'User not deleted'});
         }
+     },
+
+     //Friends Methods
+
+     //Add friend
+     addFriend: async(req,res)=>{
+        try{
+            const addFriend = await User.findOneAndUpdate(
+                {_id: req.params.userId},
+                {$addToSet: {friends: req.params.friendId}},
+                {runValidators: true, new: true}
+            );
+            
+            res.status(200).json(addFriend);
+
+        }catch(err){
+            res.status(500).send({message: 'Friend not added'})
+        }
+     },
+
+     //Remove friend
+     removeFriend: async(req,res)=>{
+        try{
+            const removeFriend = await User.findOneAndUpdate(
+                {_id: req.params.userId},
+                {$pull: {friends: req.params.friendId}},
+                {runValidators: true, new: true}
+            );
+
+            res.status(200).json(removeFriend);
+
+        }catch(err){
+            res.status(500).send({message: 'Friend not added'})
+        }
      }
 
 }

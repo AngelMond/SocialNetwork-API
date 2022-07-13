@@ -2,6 +2,7 @@ const { Thought } = require('../models');
 
 
 let thoughtController = {
+    
     getThoughts:  async (req,res)=>{
         try{
          const thoughtData = Thought.find();
