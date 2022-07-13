@@ -4,7 +4,7 @@ const { User } = require('../models');
 let userController = {
 
     //Method get all Users
-    getUsers:  async (req,res)=>{
+    getAllUsers:  async (req,res)=>{
        try{
         const userData = await User.find();
         res.status(200).json(userData);
