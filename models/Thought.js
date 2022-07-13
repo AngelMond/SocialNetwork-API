@@ -1,6 +1,7 @@
-const { Schema, Types } = require('mongoose');
+const { Schema, Types, model } = require('mongoose');
 
 const reactionSchema = require('./Reaction')
+
 //Thought Schema
 const thoughtSchema = new Schema({
 
@@ -8,7 +9,7 @@ const thoughtSchema = new Schema({
         type: String, 
         required: true, 
         minlength: 1, 
-        maxLength: 280},//Must be between 1 and 280 characters buscar delimiter filter o meter regex
+        maxLength: 280},
 
     createdAt: {
         type: Date, 
@@ -18,19 +19,21 @@ const thoughtSchema = new Schema({
     //The user that created this thought
     username: {
         type: String, 
-        required: true},
+        required: true
+    },
 
     //These are like replies
     reactions: [reactionSchema],
 
-    //Create a virtual called `reactionCount` that retrieves the length of the thought's `reactions` array field on query.
-    },
-    {
+},
+{
     toJSON: {
         getters: true,
-        },
-    }
+    },
+}
 );
+
+//Create a virtual called `reactionCount` that retrieves the length of the thought's `reactions` array field on query.
 
 //Use a getter method to format the timestamp on query
 thoughtSchema.virtual('reactionCount')
@@ -38,9 +41,7 @@ thoughtSchema.virtual('reactionCount')
     return this.reactions.length;
 });
 
-const Thought = model('Thought', thoughtSchema)
+const Thought = model('Thought', thoughtSchema);
 
-module.exports = {
-    Thought,
-    thoughtSchema
-};
+
+module.exports = Thought;
