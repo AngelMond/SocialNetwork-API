@@ -9,12 +9,9 @@ router.post('/create', userController.createUser);
 router.put('/update/:userId', userController.updateUser);
 router.delete('/delete/:userId', userController.deleteUser);
 
-//Add friend route
-router.put('/:userId/friends/:friendId', userController.addFriend);
-
-//Remove friend route
-router.delete('/:userId/friends/:friendId', userController.removeFriend);
-
-
+//Add and Remove friend route
+router.route('/:userId/friends/:friendId')
+    .put(userController.addFriend)
+    .delete(userController.removeFriend);
 
 module.exports = router ;
