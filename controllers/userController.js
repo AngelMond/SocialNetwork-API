@@ -1,7 +1,7 @@
 const { User, Thought } = require('../models');
 
 
-let userController = {
+const userController = {
 
     //Method get all Users
     getAllUsers:  async(req,res)=>{

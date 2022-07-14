@@ -25,7 +25,6 @@ const reactionSchema = new Schema({
         type: Date, 
         default: Date.now,
     }, 
-    //Use a getter method to format the timestamp on query
     },
     {
     toJSON: {
@@ -35,5 +34,11 @@ const reactionSchema = new Schema({
     }
 );
 
+
+//Use a getter method to format the timestamp
+reactionSchema.get(function(){
+    let date = this.createdAt;
+    return date.toLocalDateString("en-US")
+});
 
 module.exports = reactionSchema;
