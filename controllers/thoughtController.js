@@ -63,6 +63,36 @@ let thoughtController = {
         }catch(err){
             res.status(500).send({message: 'Cannot update thought by its id'});
         }
+    },
+
+    //Create reaction
+    createReaction: async(req,res)=>{
+        try{
+            const createReaction = await Thought.findOneAndUpdate(
+                {_id: req.params.thoughtId},
+                {$addToSet: {reactions: req.body}},
+                {runValidators: true, new: true},
+            );
+            res.status(200).json(createReaction);
+        }catch(err){
+            res.status(500).send({message: 'Cannot create the reaction'})
+        }
+    },
+
+    //Delete reaction
+    deleteReaction: async(req,res)=>{
+        try{
+
+            await Thought.findOneAndUpdate(
+                {_id: req.params.thoughtId},
+                {$pull: {reactions: {_id: req.params.reactionId}}},
+                {runValidators: true, new: true},
+            );
+
+            res.status(200).send({message: 'Reaction deleted'})
+        }catch(err){
+            res.status(500).send({message: 'Cannot delete the reaction'})
+        }
     }
 }
 

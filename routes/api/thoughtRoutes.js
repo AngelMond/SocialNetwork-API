@@ -19,4 +19,12 @@ router.delete('/:thoughtId', thoughtController.deleteThought);
 
 
 
+/*****   REACTION ROUTES ********/
+
+router.post('/:thoughtId/reactions', thoughtController.createReaction);
+
+router.delete('/:thoughtId/reactions/:reactionId', thoughtController.deleteReaction);
+
+
+
 module.exports = router;
