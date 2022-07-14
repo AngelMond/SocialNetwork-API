@@ -39,7 +39,7 @@ was developed in Nodejs using a MVC arquitecture Pattern and using Express for r
 UserController has all methods that I used in routes.
 !["Image showing the userController"](./assets/userController.jpg);
 
-Virtuals are not stored in MongoDB
+Virtuals are not stored in MongoDB, so you'll save precious memory in your DataBase!
 !["Image of virtual to show the friends count"](./assets/friendCountVirtual.jpg)
 
 
