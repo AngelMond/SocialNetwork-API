@@ -8,9 +8,8 @@ let thoughtController = {
         try{
          const thoughtData = await Thought.find();
             res.status(200).json(thoughtData);
-         
         }catch(err){
-            res.status(500).json(err)
+            res.status(500).json(err);
         }
      },
 
@@ -19,7 +18,6 @@ let thoughtController = {
         try{
          const userData = await Thought.findOne({_id: req.params.thoughtId});
          res.status(200).json(userData);
-         
         }catch(err){
          res.status(500).json(err);
         }
@@ -28,7 +26,6 @@ let thoughtController = {
       //Method to create a new User
     createThought: async(req,res)=>{
         try{
-
            const createThought = await Thought.create(req.body);
             
            //Find user that created the thought and update the thoughts field
@@ -36,15 +33,37 @@ let thoughtController = {
                 {_id: req.body.userId},
                 {$addToSet: {thoughts:  createThought._id}},
                 {runValidators: true, new: true}
-            )
-
+            );
             res.status(200).json(createThought);
         }catch(err){
             res.status(500).json(err);
         }
     },
 
+    //Update thought
+    updateThought: async(req,res)=>{
+        try{
+            const updatedThought = await Thought.findOneAndUpdate(
+                {_id: req.params.thoughtId},
+                {$set: req.body},
+                {runValidators: true, new: true}
+            );
+            res.status(200).json(updatedThought);
 
+        }catch(err){
+            res.status(500).send({message: 'Cannot update thought by its id'});
+        }
+    },
+    
+    //Delete thought 
+    deleteThought: async(req,res)=>{
+        try{    
+            await Thought.findOneAndDelete({_id: req.params.thoughtId});
+            res.status(200).send({message: 'Tought successfully deleted'});
+        }catch(err){
+            res.status(500).send({message: 'Cannot update thought by its id'});
+        }
+    }
 }
 
 module.exports = thoughtController;
