@@ -17,9 +17,9 @@ The API has 3 basic CRUD functionalities.
 2- Create, Updated and Delete Thoughts.
 * To create a Thought must provide the thoughtText, username and the userId.
 
-3- React to others thoughts.
-* Each user can react to the thoughts of other users by adding a comment to that thought.
-       
+3- Add and Remove Reactions to other users thoughts.
+* Each user can react to other users thoughts by adding a comment to that thought.
+* Reaction schema will provide as well a record of how many users have reacted to one single thought.
     
 
 was developed in Nodejs using a MVC arquitecture Pattern. 
