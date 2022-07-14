@@ -24,7 +24,7 @@ The API has 3 basic CRUD functionalities.
 * Reaction schema will provide as well a record of how many users have reacted to one single thought.
     
 # Technologies
-was developed in Nodejs using a MVC arquitecture Pattern and using Express for routing. 
+This API was developed in Nodejs using a MVC arquitecture Pattern and using Express for routing. 
 
 <div style="display=flex flex-row flex-wrap">
 <img src="https://img.shields.io/badge/-JavaScript-F7DF1E?logo=javascript&logoColor=fff">
