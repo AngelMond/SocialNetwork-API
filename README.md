@@ -34,7 +34,13 @@ was developed in Nodejs using a MVC arquitecture Pattern and using Express for r
 <img src="https://img.shields.io/badge/-Git-F05032?logo=git&logoColor=fff">
 </div>
 
+# Code 
 
+UserController has all methods that I used in routes.
+!["Image showing the userController"](./assets/userController.jpg);
+
+Virtuals are not stored in MongoDB
+!["Image of virtual to show the friends count"](./assets/friendCountVirtual.jpg)
 
 
 # Link to video:
