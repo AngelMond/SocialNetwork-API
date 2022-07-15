@@ -18,7 +18,7 @@ const thoughtController = {
             const thoughtData = await Thought.findOne({_id: req.params.thoughtId});
 
             //Check if thought exists
-            const thoughtExists = await User.exists({_id: req.params.userId});
+            const thoughtExists = await Thought.exists({_id: req.params.thoughtId});
             if(!thoughtExists){
                 res.status(400).json({message: 'Thought not found with that id'});
             }
