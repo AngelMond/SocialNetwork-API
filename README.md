@@ -48,5 +48,6 @@ In the video you'll able to see the CRUD functionality using insomnia for testin
 <div><a href="" target="_blank">Go to video</a></div>
 
 
-<h3>License</h3>
+
+# <h3>License</h3>
 This project is licensed under the terms of the MIT license.
