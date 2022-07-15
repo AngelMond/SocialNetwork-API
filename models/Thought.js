@@ -14,15 +14,16 @@ const thoughtSchema = new Schema({
     createdAt: {
         type: Date, 
         default: Date.now,
+        get: (date) => date.toLocaleDateString("en-US"),
     },
 
-    //The user that created this thought
+    //The user that created the thought
     username: {
         type: String, 
         required: true
     },
-    
-    //These are like replies
+
+    //Reactions from other users
     reactions: [reactionSchema],
 },
 {
@@ -37,12 +38,6 @@ const thoughtSchema = new Schema({
 thoughtSchema.virtual('reactionCount')
 .get(function(){
     return this.reactions.length;
-});
-
-//Use a getter method to format the timestamp
-thoughtSchema.get(function(){
-    let date = this.createdAt;
-    console.log(date.toLocalDateString("en-US"));
 });
 
 const Thought = model('Thought', thoughtSchema);
