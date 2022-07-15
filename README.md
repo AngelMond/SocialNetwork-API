@@ -43,11 +43,11 @@ Virtuals are not stored in MongoDB, so you'll save precious memory in your DataB
 !["Image of virtual to show the friends count"](./assets/friendCountVirtual.jpg)
 
 
-# Link to video:
+# Link to video
 In the video you'll able to see the CRUD functionality using insomnia for testing all routes.
 <div><a href="" target="_blank">Go to video</a></div>
 
 
 
-# <h3>License</h3>
+# License
 This project is licensed under the terms of the MIT license.
