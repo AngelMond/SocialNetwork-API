@@ -6,20 +6,26 @@ const userController = {
     //Method get all Users
     getAllUsers:  async(req,res)=>{
        try{
-        const userData = await User.find();
-        res.status(200).json(userData);
+            const userData = await User.find();
+            res.status(200).json(userData);
         
        }catch(err){
-        res.status(500).json(err);
+            res.status(500).json(err);
        }
     },
 
     //Method to search for a single User
     getOneUser: async(req,res)=>{
         try{
-         const userData = await User.findOne({_id: req.params.userId});
-         res.status(200).json(userData);
-         
+            const userData = await User.findOne({_id: req.params.userId});
+
+            //Verify if user exists
+            const userExists = await User.exists({_id: req.params.userId});
+            if(!userExists){
+                res.status(400).json({message: 'User not found'});
+            }
+            //If user exists return User
+            res.status(200).json(userData);
         }catch(err){
          res.status(500).json(err);
         }
@@ -28,7 +34,7 @@ const userController = {
      //Method to create a new User
      createUser: async(req,res)=>{
         try{
-           const createUser = await User.create(req.body);
+            const createUser = await User.create(req.body);
             res.status(200).json(createUser);
         }catch(err){
             res.status(500).json(err);

@@ -5,7 +5,7 @@ const thoughtController = {
     //Method get all Users
     getAllThoughts: async (req,res)=>{
         try{
-         const thoughtData = await Thought.find();
+            const thoughtData = await Thought.find();
             res.status(200).json(thoughtData);
         }catch(err){
             res.status(500).json(err);
@@ -15,10 +15,16 @@ const thoughtController = {
      //Method to search for a single thought
     getOneThought: async (req,res)=>{
         try{
-         const userData = await Thought.findOne({_id: req.params.thoughtId});
-         res.status(200).json(userData);
+            const thoughtData = await Thought.findOne({_id: req.params.thoughtId});
+
+            //Check if thought exists
+            const thoughtExists = await User.exists({_id: req.params.userId});
+            if(!thoughtExists){
+                res.status(400).json({message: 'Thought not found with that id'});
+            }
+            res.status(200).json(thoughtData);
         }catch(err){
-         res.status(500).json(err);
+            res.status(500).json(err);
         }
      },
 
